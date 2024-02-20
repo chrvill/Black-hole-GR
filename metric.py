@@ -25,14 +25,13 @@ class Metric:
         self.g_inv = self.g.inv()       # The contravariant ---------||----------------
         self.coordinates = coordinates  # The coordinates in which we express the metric
 
-        self.dim = len(self.coordinates)  # Dimension of the spacetime in question (have assumed 4-dim in other parts of the code. That should be generalized)
+        self.dim = len(self.coordinates)  # Dimension of the spacetime in question
 
-        # Sympy variables representing the components of the four-velocity of a particle
-        # u0 is dx^0/dlambda, u1 is dx^1/dlambda etc.
-        # (have explicitly here assumed a (3 + 1) dimensional spacetime, which is not ideal...)
-        u0, u1, u2, u3 = sympy.symbols("u0, u1, u2, u3")
-        self.velocities = [u0, u1, u2, u3]
-
+        # Sympy variables representing the components of the four-momentum of a particle
+        # p0 is dx^0/dlambda, p1 is dx^1/dlambda etc.
+        momentum_string = ", ".join([f"p{i}" for i in range(self.dim)]) 
+        self.momentum = sympy.symbols(momentum_string)
+        
         # List containing the right-hand-side (rhs) of each component of the geodesic equation
         self.geodesic_rhs = [self.compute_geodesic_rhs(i) for i in range(self.dim)]
 
@@ -61,7 +60,7 @@ class Metric:
 
         for rho in range(self.dim):
             for sigma in range(self.dim):
-                result -= self.compute_christoffel(mu, rho, sigma)*self.velocities[rho]*self.velocities[sigma]
+                result -= self.compute_christoffel(mu, rho, sigma)*self.momentum[rho]*self.momentum[sigma]
 
         return result
 
