@@ -1,11 +1,11 @@
 # Black-hole-GR
 Functionality for computing various quantities in general relativity (GR), and in particular quantities relevant to black holes. The main functionality is the derivation of explicit expressions for the components of the geodesic equation: 
 
-<img src="https://latex.codecogs.com/svg.image?\large%20\color{white}\frac{d^2x^\mu}{d\lambda^2}%20=%20-\Gamma^\mu_{\rho%20\sigma}%20\frac{dx^\rho}{d\lambda}%20\frac{dx^\sigma}{d\lambda} \quad\quad(1)" />
+<img src="https://latex.codecogs.com/svg.image?\frac{d^2&space;x^\mu}{d\lambda^2}=-\Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda}\quad\quad(1)" />
 
 where $\Gamma^{\mu}_{\rho \sigma}$ are the Christoffel symbols of the metric $g_{\mu \nu}$. These are given by 
 
-<img src="https://latex.codecogs.com/svg.image?\large%20\color{white}\Gamma^\mu_{\rho%20\sigma} = \frac{1}{2}g^{\mu \nu}\left(\partial_{\rho} g_{\sigma \nu} + \partial_{\sigma} g_{\rho \nu} - \partial_{\nu} g_{\rho \sigma}\right) \quad\quad(2)" />
+<img src="https://latex.codecogs.com/svg.image?\Gamma^\mu_{\rho\sigma}=\frac{1}{2}g^{\mu\nu}\left(\partial_\rho&space;g_{\sigma\nu}&plus;\partial_\sigma&space;g_{\rho\nu}-\partial_\nu&space;g_{\rho\sigma}\right)\quad\quad(2)" />
 
 The code uses the Sympy library in Python to do symbolic differentiation and algebra. Once we have the Christoffel symbols it's very easy to compute the Riemann tensor and the Ricci tensor and scalar (at least easy in principle, the computations are tedious).
 
