@@ -3,7 +3,7 @@ Functionality for computing various quantities in general relativity (GR), and i
 
 <img src="https://latex.codecogs.com/svg.image?\color{white}\frac{d^2&space;x^\mu}{d\lambda^2}=-\Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda}\quad\quad(1)" />
 
-where $\Gamma^{\mu}_{\rho \sigma}$ are the Christoffel symbols of the metric $g_{\mu \nu}$. These are given by 
+where <img src=https://latex.codecogs.com/svg.image?\inline\color{white}&space;\Gamma^\mu_{\rho\sigma}> are the Christoffel symbols of the metric <img src=https://latex.codecogs.com/svg.image?\inline\color{white}&space;g_{\mu\nu}>. These are given by 
 
 <img src="https://latex.codecogs.com/svg.image?\color{white}\Gamma^\mu_{\rho\sigma}=\frac{1}{2}g^{\mu\nu}\left(\partial_\rho&space;g_{\sigma\nu}&plus;\partial_\sigma&space;g_{\rho\nu}-\partial_\nu&space;g_{\rho\sigma}\right)\quad\quad(2)" />
 
