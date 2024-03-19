@@ -6,7 +6,7 @@ class KerrMetric:
         self.a = a
         self.M = M
 
-        self.Rs = 1 + np.sqrt(1 - self.a**2)
+        self.r_EH = 1 + np.sqrt(1 - self.a**2)
 
     """
     The covariant components of the metric tensor
@@ -138,7 +138,7 @@ class KerrMetric:
 def RungeKuttaFehlberg(y, h, rhs, tol = 1e-7):
     """
     Uses the Runge-Kutta-Fehlberg (RKF45) integration scheme to step our particle forward
-    in time along a geodesic. y contains our the functions that we wish to step forward in time.
+    in time along a geodesic. y contains the functions that we wish to step forward in time.
     h is the step size, rhs is the right hand side, kerr is an instance of the KerrMetric class,
     tol is an error tolerance level that we choose.
     """
@@ -169,6 +169,7 @@ def RungeKuttaFehlberg(y, h, rhs, tol = 1e-7):
         # Calculating a new stepsize based on the current error
         new_h = 0.9*h*(tol/abs_error)**(1/5)
         h = new_h
+        #h = np.min([new_h, 1e-1])
 
     return new_y, h
 
@@ -194,6 +195,9 @@ def solve(y0, n, h0, kerr):
 
         y[i + 1] = y_next
         affine_parameter[i + 1] = affine_parameter[i] + h
+        
+        if y[i + 1, 1] < 1.1*kerr.r_EH:
+            return affine_parameter[:i + 1], y[: i + 1]
 
     return affine_parameter, y
 
@@ -203,8 +207,8 @@ def compute_EH_and_ergosphere(kerr):
     kerr is an instance of the KerrMetric class.
     """
     theta = np.linspace(0, 2*np.pi, 100)
-    x_EH = np.sqrt(kerr.Rs**2 + kerr.a**2)*np.cos(theta)
-    y_EH = np.sqrt(kerr.Rs**2 + kerr.a**2)*np.sin(theta)
+    x_EH = np.sqrt(kerr.r_EH**2 + kerr.a**2)*np.cos(theta)
+    y_EH = np.sqrt(kerr.r_EH**2 + kerr.a**2)*np.sin(theta)
 
     x_ergo = np.sqrt(2**2 + kerr.a**2)*np.cos(theta)
     y_ergo = np.sqrt(2**2 + kerr.a**2)*np.sin(theta)
@@ -235,7 +239,7 @@ def plotGeodesic2d(solution, kerr):
     ax.plot(x, y, "b-", label = "Geodesic")
     ax.plot(x[0], y[0], "ro", label = "Start")
 
-    EH = plt.Circle((0, 0), np.sqrt(kerr.Rs**2 + kerr.a**2), color = "k")
+    EH = plt.Circle((0, 0), np.sqrt(kerr.r_EH**2 + kerr.a**2), color = "k")
     ax.add_patch(EH)
 
     circle_angles = np.linspace(0, 2*np.pi, 100)
