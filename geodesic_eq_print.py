@@ -13,7 +13,7 @@ def print_geodesic_rhs(metric, latex = False):
     print("\n")
 
 ### For Schwarzschild 
-data_schwarzschild = getSchwarzschild()
+"""data_schwarzschild = getSchwarzschild()
 schwarzschild = data_schwarzschild["metric"]
 variables = data_schwarzschild["coordinates"]
 
@@ -36,3 +36,11 @@ R = sympy.simplify(flrw.compute_ricci_scalar())
 t = variables[0]
 R_substituted = R.subs(a_t, t**(2/3)).doit()
 print(sympy.simplify(R_substituted)) 
+
+"""
+### For Schwarzschild-de Sitter
+data_schwarzschild_deSitter = getSchwarzschild_deSitter()
+schwarzschild_deSitter = data_schwarzschild_deSitter["metric"]
+variables = data_schwarzschild_deSitter["coordinates"]
+a_t = data_schwarzschild_deSitter["parameters"]["H"]
+print_geodesic_rhs(schwarzschild_deSitter)

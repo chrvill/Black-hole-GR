@@ -4,7 +4,7 @@ from matplotlib.animation import FuncAnimation
 
 from kerr_geodesic import *
 
-a = np.linspace(0, 1, 1000)
+a = np.linspace(0, 1, 500)
 
 n_geodesics = 12 
 

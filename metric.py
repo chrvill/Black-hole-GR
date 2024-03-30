@@ -205,6 +205,22 @@ def getAlcubierre():
     
     return data
 
+def getSchwarzschild_deSitter():
+    t, r, theta, phi, H = sympy.symbols("t, r, theta, phi, H")
+    
+    coordinates = [t, r, theta, phi]
+    
+    g = sympy.Matrix([[-(1 - 2/r - H**2*r**2), 0, 0, 0],
+                      [0, (1 - 2/r - H**2*r**2)**(-1), 0, 0],
+                      [0, 0, r**2, 0],
+                      [0, 0, 0, r**2*sympy.sin(theta)**2]])
+
+    schwarzschild_deSitter = Metric(g, coordinates)
+    
+    data = {"metric": schwarzschild_deSitter, "coordinates": coordinates, "parameters": {"H": H}}
+    
+    return data
+
 if __name__ == "__main__":
     """
     flrw, coordinates, a = getFLRW()
@@ -214,7 +230,6 @@ if __name__ == "__main__":
     geodesic_eq = flrw.geodesic_rhs[0]
     print(geodesic_eq.subs(a, sympy.exp(t)).doit())
     """
-
     data = getAlcubierre()
     alcubierre = data["metric"]
     coordinates = data["coordinates"]
