@@ -22,3 +22,6 @@ The code uses the Sympy library in Python to do symbolic differentiation and alg
 
 `surfaces.py` create plots of the inner and outer ergosphere and event horizons of a Kerr black hole. 
 
+`visualizing_curvature.py` creates an animation showing the geodesics of photons with zero angular momentum in the asymptotically flat region of Kerr spacetime as they move towards the black hole. 
+
+`visualizing_geodesics.py` creates animations of a set of geodesics in Kerr travelling either prograde or retrograde. 
